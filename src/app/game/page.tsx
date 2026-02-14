@@ -491,10 +491,11 @@ export default function GamePage() {
                 </h3>
               </div>
 
-              {/* Answer Options */}
-              <div className="space-y-3">
+              {/* Answer Options - 2x2 Grid */}
+              <div className="grid grid-cols-2 gap-3">
                 {currentQuestion.options.map((option, idx) => {
-                  let className = 'answer-option flex items-center gap-4';
+                  const labels = ['A', 'B', 'C', 'D'];
+                  let className = 'answer-option flex items-center gap-3';
                   if (eliminatedOptions.includes(idx)) className += ' eliminated';
                   if (answerState) className += ' disabled';
                   if (selectedAnswer === idx && answerState === 'checking') className += ' selected';
@@ -510,10 +511,10 @@ export default function GamePage() {
                       className={className}
                       disabled={!!answerState || eliminatedOptions.includes(idx)}
                     >
-                      <span className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-tet-gold/40 text-tet-gold font-bold text-lg shrink-0">
-                        {answerLabels[idx]}
+                      <span className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-tet-gold/40 text-tet-gold font-bold text-base md:text-lg shrink-0">
+                        {labels[idx]}
                       </span>
-                      <span className="text-base md:text-lg font-medium">{option}</span>
+                      <span className="text-sm md:text-base font-medium flex-1 text-left">{option}</span>
                     </button>
                   );
                 })}
