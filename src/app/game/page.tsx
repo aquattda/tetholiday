@@ -20,6 +20,16 @@ function shuffle<T>(arr: T[]): T[] {
   return s;
 }
 
+function shuffleQuestionOptions(q: Question): Question {
+  const indices = q.options.map((_, i) => i);
+  const shuffledIndices = shuffle(indices);
+  return {
+    ...q,
+    options: shuffledIndices.map(i => q.options[i]),
+    correctAnswer: shuffledIndices.indexOf(q.correctAnswer),
+  };
+}
+
 export default function GamePage() {
   const router = useRouter();
 
@@ -77,7 +87,7 @@ export default function GamePage() {
     const medium = shuffle(pool.filter((q) => q.difficulty === 'medium'));
     const hard = shuffle(pool.filter((q) => q.difficulty === 'hard'));
 
-    const selected = [...easy.slice(0, 5), ...medium.slice(0, 5), ...hard.slice(0, 5)];
+    const selected = [...easy.slice(0, 5), ...medium.slice(0, 5), ...hard.slice(0, 5)].map(shuffleQuestionOptions);
     setQuestions(selected);
     setUsedQuestionIds(new Set(selected.map((q) => q.id)));
     setPhase('ready');
@@ -161,8 +171,9 @@ export default function GamePage() {
     if (!lifelines.fiftyFifty || answerState) return;
     setLifelines((l) => ({ ...l, fiftyFifty: false }));
     const correct = questions[currentIndex].correctAnswer;
-    const wrong = [0, 1, 2].filter((i) => i !== correct);
-    setEliminatedOptions(wrong);
+    const allIndices = questions[currentIndex].options.map((_, i) => i);
+    const wrong = shuffle(allIndices.filter((i) => i !== correct));
+    setEliminatedOptions(wrong.slice(0, 2));
     showToast('✂️ Đã loại bỏ 2 phương án sai!', 'info');
   };
 
@@ -177,7 +188,7 @@ export default function GamePage() {
     );
 
     if (pool.length > 0) {
-      const newQ = pool[Math.floor(Math.random() * pool.length)];
+      const newQ = shuffleQuestionOptions(pool[Math.floor(Math.random() * pool.length)]);
       const newQuestions = [...questions];
       newQuestions[currentIndex] = newQ;
       setQuestions(newQuestions);
@@ -228,7 +239,7 @@ export default function GamePage() {
   // ==================== RENDER HELPERS ====================
 
   const currentQuestion = questions[currentIndex];
-  const answerLabels = ['A', 'B', 'C'];
+  const answerLabels = ['A', 'B', 'C', 'D'];
 
   const getTimerColor = () => {
     if (timeLeft > 20) return '#22C55E';
@@ -294,7 +305,7 @@ export default function GamePage() {
               <div className="flex items-start gap-3 p-3 rounded-lg bg-white/5">
                 <span className="text-tet-gold text-xl mt-0.5">⏱️</span>
                 <div>
-                  Mỗi câu hỏi có <strong className="text-tet-gold">30 giây</strong> để trả lời. Chọn <strong className="text-tet-gold">1 trong 3</strong> phương án.
+                  Mỗi câu hỏi có <strong className="text-tet-gold">30 giây</strong> để trả lời. Chọn <strong className="text-tet-gold">1 trong 4</strong> phương án.
                 </div>
               </div>
 
@@ -320,7 +331,7 @@ export default function GamePage() {
               <div className="flex items-start gap-3 p-3 rounded-lg bg-white/5">
                 <span className="text-tet-gold text-xl mt-0.5">💰</span>
                 <div>
-                  Trả lời đúng cả 15 câu để trở thành <strong className="text-tet-gold">TRIỆU PHÚ</strong> với giải thưởng <strong className="text-tet-gold">150.000.000đ!</strong>
+                  Trả lời đúng cả 15 câu để trở thành <strong className="text-tet-gold">TRIỆU PHÚ</strong> với giải thưởng <strong className="text-tet-gold">200.000đ!</strong>
                 </div>
               </div>
             </div>
