@@ -403,7 +403,7 @@ export default function GamePage() {
 
             <div className="space-y-3">
               <button onClick={startPlaying} className="btn-tet text-xl px-10 py-4 w-full">
-                🚀 SẴN SÀNG!
+                SẴN SÀNG!
               </button>
               <button onClick={() => setPhase('select')} className="text-tet-cream/40 hover:text-tet-cream/70 text-sm transition-colors">
                 ← Chọn lại bộ câu hỏi

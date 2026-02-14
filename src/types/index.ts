@@ -2,7 +2,7 @@ export interface Question {
   id: number;
   content: string;
   options: string[];
-  correctAnswer: number; // index 0, 1, or 2
+  correctAnswer: number; // index 0, 1, 2, or 3
   category: 'adult' | 'kids';
   difficulty: 'easy' | 'medium' | 'hard';
 }
@@ -30,21 +30,21 @@ export interface Lifelines {
 }
 
 export const PRIZE_LEVELS: number[] = [
-  200000,       // Câu 1
-  400000,       // Câu 2
-  600000,       // Câu 3
-  1000000,      // Câu 4
-  2000000,      // Câu 5  ★ Mốc an toàn 1
-  3000000,      // Câu 6
-  6000000,      // Câu 7
-  10000000,     // Câu 8
-  14000000,     // Câu 9
-  22000000,     // Câu 10 ★ Mốc an toàn 2
-  30000000,     // Câu 11
-  40000000,     // Câu 12
-  60000000,     // Câu 13
-  85000000,     // Câu 14
-  150000000,    // Câu 15 ★ TRIỆU PHÚ!
+  1000,         // Câu 1
+  2000,         // Câu 2
+  3000,         // Câu 3
+  5000,         // Câu 4
+  10000,        // Câu 5  ★ Mốc an toàn 1
+  15000,        // Câu 6
+  20000,        // Câu 7
+  30000,        // Câu 8
+  40000,        // Câu 9
+  50000,        // Câu 10 ★ Mốc an toàn 2
+  70000,        // Câu 11
+  100000,       // Câu 12
+  130000,       // Câu 13
+  160000,       // Câu 14
+  200000,       // Câu 15 ★ THẮNG LỚN!
 ];
 
 // Mốc an toàn: index 4 (câu 5) và index 9 (câu 10)
@@ -57,7 +57,7 @@ export function formatPrize(amount: number): string {
 }
 
 export function getMilestoneAmount(questionIndex: number): number {
-  if (questionIndex >= 10) return PRIZE_LEVELS[9];  // 22,000,000đ
-  if (questionIndex >= 5) return PRIZE_LEVELS[4];   // 2,000,000đ
+  if (questionIndex >= 10) return PRIZE_LEVELS[9];  // 50,000đ
+  if (questionIndex >= 5) return PRIZE_LEVELS[4];   // 10,000đ
   return 0;
 }

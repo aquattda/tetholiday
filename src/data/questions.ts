@@ -819,15 +819,15 @@ export const adultQuestions: Question[] = [
 
 // ============================================================
 // BỘ CÂU HỎI EM BÉ - Chủ đề Tết cho thiếu nhi
-// 20 câu hỏi
+// 20 câu hỏi (sắp xếp theo độ khó tăng dần)
 // ============================================================
 
 export const kidsQuestions: Question[] = [
-  // ===== DỄ (Easy) =====
+  // ===== DỄ (Easy) - Câu 1-5 =====
   {
     id: 201,
     content: 'Tết Nguyên Đán có nhiều màu gì nhất?',
-    options: ['Màu đỏ', 'Màu xám', 'Màu đen'],
+    options: ['Màu đỏ', 'Màu xám', 'Màu đen', 'Màu tím'],
     correctAnswer: 0,
     category: 'kids',
     difficulty: 'easy',
@@ -835,7 +835,7 @@ export const kidsQuestions: Question[] = [
   {
     id: 202,
     content: 'Ngày Tết, các bạn nhỏ thường nhận được gì từ người lớn?',
-    options: ['Bài tập về nhà', 'Lì xì', 'Đồ chơi cũ'],
+    options: ['Bài tập về nhà', 'Lì xì', 'Đồ chơi cũ', 'Sách giáo khoa'],
     correctAnswer: 1,
     category: 'kids',
     difficulty: 'easy',
@@ -843,115 +843,117 @@ export const kidsQuestions: Question[] = [
   {
     id: 203,
     content: 'Bánh chưng có hình gì?',
-    options: ['Hình tròn', 'Hình tam giác', 'Hình vuông'],
+    options: ['Hình tròn', 'Hình tam giác', 'Hình vuông', 'Hình ngôi sao'],
     correctAnswer: 2,
     category: 'kids',
     difficulty: 'easy',
   },
   {
     id: 204,
-    content: 'Ngày Tết mọi người thường chúc nhau điều gì?',
-    options: ['Chúc ngủ ngon', 'Chúc năm mới vui vẻ', 'Chúc đi học sớm'],
+    content: 'Hoa mai thường có màu gì?',
+    options: ['Màu tím', 'Màu vàng', 'Màu xanh', 'Màu trắng'],
     correctAnswer: 1,
     category: 'kids',
     difficulty: 'easy',
   },
   {
     id: 205,
-    content: 'Hoa mai thường có màu gì?',
-    options: ['Màu tím', 'Màu vàng', 'Màu xanh'],
-    correctAnswer: 1,
-    category: 'kids',
-    difficulty: 'easy',
-  },
-  {
-    id: 206,
     content: 'Ngày Tết các bạn thường mặc gì?',
-    options: ['Đồ ngủ', 'Áo mới đẹp', 'Đồ tắm biển'],
-    correctAnswer: 1,
-    category: 'kids',
-    difficulty: 'easy',
-  },
-  {
-    id: 207,
-    content: 'Ai thường lì xì cho các bạn nhỏ?',
-    options: ['Bạn cùng lớp', 'Ông bà, bố mẹ', 'Thú cưng'],
-    correctAnswer: 1,
-    category: 'kids',
-    difficulty: 'easy',
-  },
-  {
-    id: 208,
-    content: 'Ngày Tết, nhà cửa thường được trang trí bằng gì?',
-    options: ['Sách vở', 'Hoa và cây cảnh', 'Đồ chơi'],
+    options: ['Đồ ngủ', 'Áo mới đẹp', 'Đồ tắm biển', 'Đồ cũ'],
     correctAnswer: 1,
     category: 'kids',
     difficulty: 'easy',
   },
 
-  // ===== TRUNG BÌNH (Medium) =====
+  // ===== TRUNG BÌNH (Medium) - Câu 6-10 =====
+  {
+    id: 206,
+    content: 'Ai thường lì xì cho các bạn nhỏ?',
+    options: ['Bạn cùng lớp', 'Ông bà, bố mẹ', 'Thú cưng', 'Người lạ'],
+    correctAnswer: 1,
+    category: 'kids',
+    difficulty: 'medium',
+  },
+  {
+    id: 207,
+    content: 'Ngày Tết, nhà cửa thường được trang trí bằng gì?',
+    options: ['Sách vở', 'Hoa và cây cảnh', 'Đồ chơi', 'Quần áo'],
+    correctAnswer: 1,
+    category: 'kids',
+    difficulty: 'medium',
+  },
+  {
+    id: 208,
+    content: 'Ngày Tết mọi người thường chúc nhau điều gì?',
+    options: ['Chúc ngủ ngon', 'Chúc năm mới vui vẻ', 'Chúc đi học sớm', 'Chúc tối ngủ ngon'],
+    correctAnswer: 1,
+    category: 'kids',
+    difficulty: 'medium',
+  },
   {
     id: 209,
     content: 'Pháo hoa thường bắn lúc nào trong ngày Tết?',
-    options: ['Buổi sáng', 'Đêm giao thừa', 'Buổi chiều'],
+    options: ['Buổi sáng', 'Đêm giao thừa', 'Buổi chiều', 'Buổi trưa'],
     correctAnswer: 1,
     category: 'kids',
     difficulty: 'medium',
   },
   {
     id: 210,
-    content: 'Con vật nào đứng đầu trong 12 con giáp?',
-    options: ['Con mèo', 'Con chuột', 'Con gà'],
-    correctAnswer: 1,
-    category: 'kids',
-    difficulty: 'medium',
-  },
-  {
-    id: 211,
-    content: 'Múa lân thường xuất hiện vào dịp nào?',
-    options: ['Ngày thường', 'Tết Nguyên Đán', 'Mùa hè'],
-    correctAnswer: 1,
-    category: 'kids',
-    difficulty: 'medium',
-  },
-  {
-    id: 212,
     content: 'Bánh tét có hình gì?',
-    options: ['Hình tròn dài', 'Hình vuông', 'Hình ngôi sao'],
+    options: ['Hình tròn dài', 'Hình vuông', 'Hình ngôi sao', 'Hình trái tim'],
     correctAnswer: 0,
     category: 'kids',
     difficulty: 'medium',
   },
-  {
-    id: 213,
-    content: 'Kẹo mứt Tết thường có vị gì?',
-    options: ['Vị cay', 'Vị mặn', 'Vị ngọt'],
-    correctAnswer: 2,
-    category: 'kids',
-    difficulty: 'medium',
-  },
-  {
-    id: 214,
-    content: 'Tết diễn ra vào mùa nào?',
-    options: ['Mùa hè', 'Mùa xuân', 'Mùa đông'],
-    correctAnswer: 1,
-    category: 'kids',
-    difficulty: 'medium',
-  },
 
-  // ===== KHÓ (Hard - cho em bé) =====
+  // ===== KHÓ (Hard) - Câu 11-15 =====
   {
-    id: 215,
-    content: 'Ngày Tết thường kéo dài mấy ngày chính?',
-    options: ['1 ngày', '3 ngày', '10 ngày'],
+    id: 211,
+    content: 'Con vật nào đứng đầu trong 12 con giáp?',
+    options: ['Con mèo', 'Con chuột', 'Con gà', 'Con hổ'],
     correctAnswer: 1,
     category: 'kids',
     difficulty: 'hard',
   },
   {
+    id: 212,
+    content: 'Múa lân thường xuất hiện vào dịp nào?',
+    options: ['Ngày thường', 'Tết Nguyên Đán', 'Mùa hè', 'Halloween'],
+    correctAnswer: 1,
+    category: 'kids',
+    difficulty: 'hard',
+  },
+  {
+    id: 213,
+    content: 'Kẹo mứt Tết thường có vị gì?',
+    options: ['Vị cay', 'Vị mặn', 'Vị ngọt', 'Vị chua'],
+    correctAnswer: 2,
+    category: 'kids',
+    difficulty: 'hard',
+  },
+  {
+    id: 214,
+    content: 'Tết diễn ra vào mùa nào?',
+    options: ['Mùa hè', 'Mùa xuân', 'Mùa đông', 'Mùa thu'],
+    correctAnswer: 1,
+    category: 'kids',
+    difficulty: 'hard',
+  },
+  {
+    id: 215,
+    content: 'Ngày Tết thường kéo dài mấy ngày chính?',
+    options: ['1 ngày', '3 ngày', '10 ngày', '7 ngày'],
+    correctAnswer: 1,
+    category: 'kids',
+    difficulty: 'hard',
+  },
+  
+  // ===== RẤT KHÓ (Very Hard) - Câu 16-20 (dành riêng cho trẻ em thông minh) =====
+  {
     id: 216,
     content: 'Hoa đào thường có màu gì?',
-    options: ['Màu vàng', 'Màu hồng', 'Màu xanh lá'],
+    options: ['Màu vàng', 'Màu hồng', 'Màu xanh lá', 'Màu đỏ tươi'],
     correctAnswer: 1,
     category: 'kids',
     difficulty: 'hard',
@@ -959,7 +961,7 @@ export const kidsQuestions: Question[] = [
   {
     id: 217,
     content: 'Tết năm 2026 là năm con gì?',
-    options: ['Con rắn', 'Con dê', 'Con ngựa'],
+    options: ['Con rắn', 'Con dê', 'Con ngựa', 'Con khỉ'],
     correctAnswer: 2,
     category: 'kids',
     difficulty: 'hard',
@@ -967,7 +969,7 @@ export const kidsQuestions: Question[] = [
   {
     id: 218,
     content: 'Ông Táo cưỡi con gì về trời?',
-    options: ['Con rồng', 'Con cá chép', 'Con chim'],
+    options: ['Con rồng', 'Con cá chép', 'Con chim', 'Con ngựa'],
     correctAnswer: 1,
     category: 'kids',
     difficulty: 'hard',
@@ -975,7 +977,7 @@ export const kidsQuestions: Question[] = [
   {
     id: 219,
     content: 'Trong phong bì lì xì thường có gì?',
-    options: ['Kẹo', 'Tiền', 'Hoa'],
+    options: ['Kẹo', 'Tiền', 'Hoa', 'Bánh'],
     correctAnswer: 1,
     category: 'kids',
     difficulty: 'hard',
@@ -983,7 +985,7 @@ export const kidsQuestions: Question[] = [
   {
     id: 220,
     content: 'Ngày Tết, các bạn nhỏ nên làm gì?',
-    options: ['Chúc Tết ông bà', 'Ngủ cả ngày', 'Xem TV suốt'],
+    options: ['Chúc Tết ông bà', 'Ngủ cả ngày', 'Xem TV suốt', 'Chơi game'],
     correctAnswer: 0,
     category: 'kids',
     difficulty: 'hard',
