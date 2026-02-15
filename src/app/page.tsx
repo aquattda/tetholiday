@@ -57,10 +57,10 @@ export default function HomePage() {
 
         {/* Subtitle */}
         <div className="mb-8">
-          <p className="text-xl md:text-2xl font-light text-white drop-shadow-lg mb-2">
+          <p className="text-xl md:text-2xl font-light tet-title mb-2">
             ✨ Phiên Bản Tết Nguyên Đán ✨
           </p>
-          <p className="text-sm text-white/95 drop-shadow-md">
+          <p className="text-sm tet-title">
             Thử thách kiến thức về phong tục, văn hóa ngày Tết Việt Nam
           </p>
         </div>
