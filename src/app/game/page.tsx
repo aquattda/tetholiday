@@ -74,6 +74,13 @@ export default function GamePage() {
     }
   }, [toast]);
 
+  // Auto scroll to top when question changes (especially for mobile)
+  useEffect(() => {
+    if (phase === 'playing') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [phase, currentIndex]);
+
   const showToast = useCallback((message: string, type: 'info' | 'success' | 'error' = 'info') => {
     setToast({ message, type });
   }, []);
