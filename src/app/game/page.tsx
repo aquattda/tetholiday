@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Question, PRIZE_LEVELS, MILESTONE_INDICES, TIME_PER_QUESTION, formatPrize, getMilestoneAmount } from '@/types';
 import { adultQuestions, kidsQuestions } from '@/data/questions';
+import { getRandomQuestionSet } from '@/data/questionSets';
 import TetBackground from '@/components/TetBackground';
 
 type Phase = 'rules' | 'select' | 'ready' | 'playing' | 'result';
@@ -89,12 +90,13 @@ export default function GamePage() {
 
   const selectCategory = (cat: 'adult' | 'kids') => {
     setCategory(cat);
-    const pool = cat === 'adult' ? adultQuestions : kidsQuestions;
-    const easy = shuffle(pool.filter((q) => q.difficulty === 'easy'));
-    const medium = shuffle(pool.filter((q) => q.difficulty === 'medium'));
-    const hard = shuffle(pool.filter((q) => q.difficulty === 'hard'));
-
-    const selected = [...easy.slice(0, 5), ...medium.slice(0, 5), ...hard.slice(0, 5)].map(shuffleQuestionOptions);
+    
+    // Lấy 1 bộ câu hỏi random từ 20 bộ (10 cố định + 10 random)
+    const selectedSet = getRandomQuestionSet(cat);
+    
+    // Shuffle các câu trả lời trong mỗi câu hỏi
+    const selected = selectedSet.map(shuffleQuestionOptions);
+    
     setQuestions(selected);
     setUsedQuestionIds(new Set(selected.map((q) => q.id)));
     setPhase('ready');
