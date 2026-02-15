@@ -426,12 +426,12 @@ export default function GamePage() {
 
       {/* ==================== PLAYING PHASE ==================== */}
       {phase === 'playing' && currentQuestion && (
-        <div className="relative z-20 min-h-screen p-3 md:p-6">
-          <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-4">
+        <div className="relative z-20 min-h-screen flex flex-col">
+          <div className="max-w-6xl mx-auto w-full flex flex-col lg:flex-row gap-4 p-3 md:p-6">
             {/* LEFT: Main Game Area */}
             <div className="flex-1 flex flex-col gap-4">
               {/* Top Bar: Timer + Question Number + Mobile Prize Toggle */}
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between sticky top-0 z-30 bg-gradient-to-b from-tet-brown via-tet-brown to-transparent pb-4 -mt-3 pt-3 md:mt-0 md:pt-0 md:relative">              
                 {/* Timer */}
                 <div className={`relative ${timeLeft <= 10 ? 'timer-urgent' : ''}`}>
                   <svg width="90" height="90" viewBox="0 0 100 100">

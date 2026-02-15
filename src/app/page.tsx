@@ -69,15 +69,15 @@ export default function HomePage() {
         <div className="grid grid-cols-3 gap-4 mb-10 max-w-md mx-auto">
           <div className="game-card p-3 text-center">
             <div className="text-2xl mb-1">📝</div>
-            <div className="text-xs text-tet-gold font-semibold">15 Câu Hỏi</div>
+            <div className="text-xs text-tet-gold font-semibold">15 câu hỏi</div>
           </div>
           <div className="game-card p-3 text-center">
             <div className="text-2xl mb-1">🎯</div>
-            <div className="text-xs text-tet-gold font-semibold">3 Trợ Giúp</div>
+            <div className="text-xs text-tet-gold font-semibold">3 trợ giúp</div>
           </div>
           <div className="game-card p-3 text-center">
             <div className="text-2xl mb-1">💰</div>
-            <div className="text-xs text-tet-gold font-semibold">150 Triệu</div>
+            <div className="text-xs text-tet-gold font-semibold">200 ngàn</div>
           </div>
         </div>
 
