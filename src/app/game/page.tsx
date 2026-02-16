@@ -9,7 +9,7 @@ import TetBackground from '@/components/TetBackground';
 
 type Phase = 'rules' | 'select' | 'ready' | 'playing' | 'result';
 type AnswerState = 'pending' | 'checking' | 'correct' | 'wrong' | null;
-type GameResult = 'won' | 'lost' | 'timeout' | null;
+type GameResult = 'won' | 'lost' | 'timeout' | 'took-money' | null;
 type ToastType = { message: string; type: 'info' | 'success' | 'error' };
 
 function shuffle<T>(arr: T[]): T[] {
@@ -51,6 +51,7 @@ export default function GamePage() {
   const [toast, setToast] = useState<ToastType | null>(null);
   const [showMobilePrizes, setShowMobilePrizes] = useState(false);
   const [confetti, setConfetti] = useState<Array<{ left: string; color: string; delay: string; duration: string }>>([]);
+  const [showContinueDialog, setShowContinueDialog] = useState(false);
 
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -135,14 +136,10 @@ export default function GamePage() {
             showToast(`🎉 Chúc mừng! Bạn đã đạt mốc an toàn ${formatPrize(PRIZE_LEVELS[currentIndex])}!`, 'success');
           }
 
+          // Show continue or take money dialog
           setTimeout(() => {
-            setCurrentIndex((i) => i + 1);
-            setSelectedAnswer(null);
-            setAnswerState(null);
-            setEliminatedOptions([]);
-            setTimeLeft(TIME_PER_QUESTION);
-            setIsTimerActive(true);
-          }, 2000);
+            setShowContinueDialog(true);
+          }, 1500);
         }
       } else {
         setTimeout(() => {
@@ -165,6 +162,25 @@ export default function GamePage() {
       setFinalPrize(milestone);
       setPhase('result');
     }, 2000);
+  };
+
+  // ==================== CONTINUE OR TAKE MONEY ====================
+
+  const handleContinue = () => {
+    setShowContinueDialog(false);
+    setCurrentIndex((i) => i + 1);
+    setSelectedAnswer(null);
+    setAnswerState(null);
+    setEliminatedOptions([]);
+    setTimeLeft(TIME_PER_QUESTION);
+    setIsTimerActive(true);
+  };
+
+  const handleTakeMoney = () => {
+    setShowContinueDialog(false);
+    setGameResult('took-money');
+    setFinalPrize(PRIZE_LEVELS[currentIndex]);
+    setPhase('result');
   };
 
   // ==================== LIFELINES ====================
@@ -243,6 +259,7 @@ export default function GamePage() {
     setFinalPrize(0);
     setUsedQuestionIds(new Set());
     setConfetti([]);
+    setShowContinueDialog(false);
   };
 
   // ==================== RENDER HELPERS ====================
@@ -290,6 +307,45 @@ export default function GamePage() {
           }}
         />
       ))}
+
+      {/* Continue or Take Money Dialog */}
+      {showContinueDialog && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
+          <div className="game-card max-w-md w-full p-8 text-center animate-bounce-in">
+            <div className="text-6xl mb-4">🎉</div>
+            <h2 className="text-2xl font-black tet-title mb-4">CHÚC MỪNG!</h2>
+            <p className="text-tet-cream/80 mb-2">Bạn đã trả lời đúng câu hỏi số {currentIndex + 1}!</p>
+            
+            <div className="my-6 p-6 rounded-xl bg-gradient-to-r from-tet-gold/20 to-yellow-900/20 border-2 border-tet-gold/50">
+              <p className="text-tet-cream/60 text-sm mb-1">Số tiền hiện tại</p>
+              <p className="text-4xl font-black tet-title">
+                {formatPrize(PRIZE_LEVELS[currentIndex])}
+              </p>
+            </div>
+
+            <p className="text-tet-cream/70 mb-6">Bạn muốn tiếp tục hay nhận tiền?</p>
+
+            <div className="space-y-3">
+              <button 
+                onClick={handleContinue}
+                className="btn-tet w-full text-lg py-4"
+              >
+                ▶️ TIẾP TỤC
+              </button>
+              <button 
+                onClick={handleTakeMoney}
+                className="w-full py-4 text-lg rounded-xl border-2 border-tet-gold bg-tet-gold/20 text-tet-gold hover:bg-tet-gold hover:text-tet-brown font-bold transition-all duration-300 hover:scale-105"
+              >
+                💰 NHẬN TIỀN
+              </button>
+            </div>
+
+            <p className="text-tet-cream/40 text-xs mt-4">
+              {currentIndex < 14 && `Câu tiếp theo: ${formatPrize(PRIZE_LEVELS[currentIndex + 1])}`}
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* ==================== RULES PHASE ==================== */}
       {phase === 'rules' && (
@@ -587,13 +643,14 @@ export default function GamePage() {
           <div className="game-card max-w-md w-full p-8 text-center animate-bounce-in">
             {/* Result Icon */}
             <div className="text-7xl mb-6">
-              {gameResult === 'won' ? '🏆' : gameResult === 'lost' ? '😢' : '⏰'}
+              {gameResult === 'won' ? '🏆' : gameResult === 'lost' ? '😢' : gameResult === 'took-money' ? '💰' : '⏰'}
             </div>
 
             {/* Result Title */}
             <h2 className="text-3xl font-black mb-4">
               {gameResult === 'won' && <span className="tet-title">CHÚC MỪNG TRIỆU PHÚ!</span>}
               {gameResult === 'lost' && <span className="text-red-400">TIẾC QUÁ!</span>}
+              {gameResult === 'took-money' && <span className="tet-title">CHÚC MỪNG!</span>}
               {gameResult === 'timeout' && <span className="text-yellow-400">HẾT THỜI GIAN!</span>}
             </h2>
 
@@ -601,6 +658,7 @@ export default function GamePage() {
             <p className="text-tet-cream/70 mb-2">
               {gameResult === 'won' && 'Bạn đã trả lời đúng tất cả 15 câu hỏi! 🎉'}
               {gameResult === 'lost' && `Bạn đã trả lời sai ở câu hỏi số ${currentIndex + 1}.`}
+              {gameResult === 'took-money' && `Bạn đã chọn dừng chơi và nhận tiền ở câu hỏi số ${currentIndex + 1}! 🎉`}
               {gameResult === 'timeout' && `Bạn đã hết thời gian ở câu hỏi số ${currentIndex + 1}.`}
             </p>
 

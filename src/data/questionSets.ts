@@ -163,25 +163,23 @@ export const kidsQuestionSets: Question[][] = [
 
 // ============================================================
 // HÀM LẤY BỘ CÂU HỎI RANDOM
-// Chọn ngẫu nhiên từ 20 bộ (10 cố định + 10 random)
+// Tạo bộ câu hỏi hoàn toàn ngẫu nhiên để tránh trùng lặp giữa người chơi
 // ============================================================
 
 export function getRandomQuestionSet(category: 'adult' | 'kids'): Question[] {
-  const fixedSets = category === 'adult' ? adultQuestionSets : kidsQuestionSets;
   const pool = category === 'adult' ? adultQuestions : kidsQuestions;
   
-  // Random từ 0-19 (20 bộ)
-  const setIndex = Math.floor(Math.random() * 20);
+  // Lọc câu hỏi theo độ khó
+  const easyPool = shuffle(pool.filter(q => q.difficulty === 'easy'));
+  const mediumPool = shuffle(pool.filter(q => q.difficulty === 'medium'));
+  const hardPool = shuffle(pool.filter(q => q.difficulty === 'hard'));
   
-  if (setIndex < 10) {
-    // Chọn 1 trong 10 bộ cố định
-    return fixedSets[setIndex];
-  } else {
-    // Tạo bộ random mới từ pool
-    const easy = shuffle(pool.filter(q => q.difficulty === 'easy')).slice(0, 5);
-    const medium = shuffle(pool.filter(q => q.difficulty === 'medium')).slice(0, 5);
-    const hard = shuffle(pool.filter(q => q.difficulty === 'hard')).slice(0, 5);
-    
-    return [...easy, ...medium, ...hard];
-  }
+  // Lấy ngẫu nhiên 5 câu từ mỗi độ khó
+  const selectedQuestions: Question[] = [
+    ...easyPool.slice(0, 5),      // Câu 1-5: Dễ
+    ...mediumPool.slice(0, 5),    // Câu 6-10: Trung bình
+    ...hardPool.slice(0, 5)       // Câu 11-15: Khó
+  ];
+  
+  return selectedQuestions;
 }
