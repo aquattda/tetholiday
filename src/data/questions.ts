@@ -1088,9 +1088,9 @@ export const adultQuestions: Question[] = [
   },
   {
     id: 135,
-    content: 'Thành ngữ "Tết về nhà" có nghĩa là gì?',
-    options: ['Về quê đón Tết', 'Ở nhà nghỉ Tết', 'Dọn dẹp nhà cửa', 'Chết'],
-    correctAnswer: 0,
+    content: 'Thành ngữ "Tết về nhà" có nghĩa ẩn dụ là gì trong văn hóa dân gian?',
+    options: ['Về quê đón Tết', 'Ở nhà nghỉ Tết', 'Dọn dẹp nhà cửa', 'Qua đời (chết)'],
+    correctAnswer: 3,
     category: 'adult',
     difficulty: 'medium',
   },
@@ -1975,8 +1975,8 @@ export const kidsQuestions: Question[] = [
   },
   {
     id: 293,
-    content: 'Hoa mai thường mọc ở đâu?',
-    options: ['Miền Bắc (núi cao)', 'Dưới biển', 'Trên mây', 'Trong hang'],
+    content: 'Hoa mai là biểu tượng Tết của miền nào?',
+    options: ['Miền Nam', 'Dưới biển', 'Miền Bắc', 'Nước ngoài'],
     correctAnswer: 0,
     category: 'kids',
     difficulty: 'hard',
